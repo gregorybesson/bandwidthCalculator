@@ -5,7 +5,7 @@ self.addEventListener('message', function (e) {
     
     data = e.data;
     url = data.testFile;
-    
+
     start=new Date();
     start=start.getTime();
     getFileSize();
@@ -50,13 +50,14 @@ self.addEventListener('message', function (e) {
     }
      
     function result(v) {
-        var end, rate, duration;
+        var end, rate, duration, message;
         
         end = new Date();
         end = end.getTime();
         duration = end-start;
         rate = Math.round( (fileSize/(end-start)) *10 ) /10;
+        message = "{'fileSize':" + fileSize + ",'rate':"+ rate + ",'duration':" + duration + "}";
         
-        postMessage("{'fileSize':" + fileSize + ",'rate':"+ rate + ",'duration':" + duration + "}");
+        postMessage(JSON.stringify(message));
     }
 }, false);
