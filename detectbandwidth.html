@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Worker Sample</title>
+<script type="text/javascript">
+	window.onload=function(){
+        var worker = new Worker("detectbandwidth.js");
+        worker.onmessage = workerResultReceiver;
+        worker.onerror = workerErrorReceiver;
+        
+        worker.postMessage({
+            'testFile' : "http://styleguide.local/MaisonCausapscal.JPG"
+        });
+        
+        function workerResultReceiver(e) {
+        	console.log(e.data);
+        }
+        
+        function workerErrorReceiver(e) {
+            console.log("A webworker error has occurred " + e);
+        }
+
+    };
+</script>
+</head>
+<body>
+
+</body>
+<html>
