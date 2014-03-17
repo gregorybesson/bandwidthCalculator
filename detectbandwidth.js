@@ -12,7 +12,6 @@ self.addEventListener('message', function (e) {
     analyze();
 
     function getFileSize() {
-        debugger;
         try {
             var xhr = new XMLHttpRequest();
             xhr.open('HEAD', url, false);
@@ -31,7 +30,6 @@ self.addEventListener('message', function (e) {
     }
     
     function analyze() {
-        debugger;
         try {
             var xhr = new XMLHttpRequest();
             xhr.open('GET', url, false);
@@ -56,8 +54,8 @@ self.addEventListener('message', function (e) {
         end = end.getTime();
         duration = end-start;
         rate = Math.round( (fileSize/(end-start)) *10 ) /10;
-        message = "{'fileSize':" + fileSize + ",'rate':"+ rate + ",'duration':" + duration + "}";
+        message = '{"fileSize":' + fileSize + ',"rate":'+ rate + ',"duration":' + duration + '}';
         
-        postMessage(JSON.stringify(message));
+        postMessage(message);
     }
 }, false);
