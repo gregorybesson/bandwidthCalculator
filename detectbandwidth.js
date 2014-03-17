@@ -12,7 +12,6 @@ self.addEventListener('message', function (e) {
     analyze();
 
     function getFileSize() {
-        debugger;
         try {
             var xhr = new XMLHttpRequest();
             xhr.open('HEAD', url, false);
